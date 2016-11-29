@@ -1,0 +1,10 @@
+{
+  "intents": [
+    {
+      "intent": "GlasgowBinsIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

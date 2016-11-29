@@ -1,0 +1,3 @@
+GlasgowBinsIntent when are the bins out
+GlasgowBinsIntent bins
+GlasgowBinsIntent which bins go out next
