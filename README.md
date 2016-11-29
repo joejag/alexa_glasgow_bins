@@ -23,9 +23,6 @@ To run this example skill you need to do two things. The first is to deploy the 
 12. Set the Event Source type as Alexa Skills kit and Enable it now. Click Submit.
 13. Copy the ARN from the top right to be used later in the Alexa Skill Setup
 
-amzn1.ask.skill.84b75280-1d32-487c-8fa9-10411b02b3e0
-arn:aws:lambda:us-east-1:140551133576:function:Glasgow-Bins-Skill
-
 ### Alexa Skill Setup
 1. Go to the [Alexa Console](https://developer.amazon.com/edw/home.html) and click Add a New Skill.
 2. Set "HelloWorld" as the skill name and "hello world" as the invocation name, this is what is used to activate your skill. For example you would say: "Alexa, tell Hello World to say hello"
