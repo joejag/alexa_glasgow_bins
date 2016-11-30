@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
-    "node-lambda": "0.1.5"
+    "node-lambda": "0.7.1"
   },
   "scripts": {
     "setup": "node-lambda setup",
