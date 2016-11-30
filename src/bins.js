@@ -64,7 +64,7 @@ function nextPickUpMessage() {
   var day = days[ nextPickup.when.getDay() ]
   var month = months[ nextPickup.when.getMonth() ]
 
-  return "Hi Joe. It'll be the " + nextPickup.bins + " bins this " + day + " the " + nextPickup.when.getDate() + nth(nextPickup.when.getDate()) + " of " + month
+  return "It'll be the " + nextPickup.bins + " bins this " + day + " the " + nextPickup.when.getDate() + nth(nextPickup.when.getDate()) + " of " + month
 }
 
 module.exports = nextPickUpMessage;
