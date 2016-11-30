@@ -2,7 +2,7 @@
 
 var APP_ID =  undefined;
 
-var AlexaSkill = require('./AlexaSkill');
+var AlexaSkill = require('./src/AlexaSkill');
 
 
 // APP
@@ -71,7 +71,7 @@ function nextPickUpMessage() {
   var day = days[ nextPickup.when.getDay() ]
   var month = months[ nextPickup.when.getMonth() ]
 
-  return "It's the " + nextPickup.bins + " bins this " + day + " the " + nextPickup.when.getDate() + nth(nextPickup.when.getDate()) + " of " + month
+  return "It's going to be the " + nextPickup.bins + " bins this " + day + " the " + nextPickup.when.getDate() + nth(nextPickup.when.getDate()) + " of " + month
 }
 
 // APP

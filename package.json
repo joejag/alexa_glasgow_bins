@@ -1,0 +1,13 @@
+{
+  "name": "glasgow-bins-alexa",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "node-lambda": "0.1.5"
+  },
+  "scripts": {
+    "setup": "node-lambda setup",
+    "run": "node-lambda run",
+    "deploy": "node-lambda deploy"
+  }
+}
