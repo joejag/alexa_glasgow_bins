@@ -1,70 +1,31 @@
 'use strict'
 
-var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-var months = ['January','February','March','April','May','June','July','August','September','October','November','December']
-function nth(d) {
-  if(d>3 && d<21) return 'th'
-  switch (d % 10) {
-        case 1:  return "st"
-        case 2:  return "nd"
-        case 3:  return "rd"
-        default: return "th"
-    }
+var moment = require('moment')
+
+// routine started in Feb 2016:  http://www.glasgow.gov.uk/CHttpHandler.ashx?id=30696&p=0
+function binsGettingCollectedOn(date) {
+    const startingFrom = moment(new Date(2016, 1, 10))
+    const collectionPattern = ["blue", "green and brown", "purple and blue", "green and brown"]
+
+    var weeksSinceStartOfThisSchedule = moment(date).diff(startingFrom, 'weeks')
+    return collectionPattern[weeksSinceStartOfThisSchedule % 4]
 }
 
-class Schedule {
-  constructor(when, bins) {
-    this.when = when
-    this.bins = bins
-  }
+function nextWednesday(date) {
+    var nearestWednesday = moment(date).day("Wednesday")
+    if (nearestWednesday < date) nearestWednesday.add(1, 'week')
+    return nearestWednesday
 }
 
-const B_P = "blue and purple"
-const G_B = "green and brown"
-const B = "blue"
-
-// http://www.glasgow.gov.uk/CHttpHandler.ashx?id=30696&p=0
-var pickups = [
-  new Schedule(new Date(2016, 10, 30), B_P),
-  new Schedule(new Date(2016, 11, 7), G_B),
-  new Schedule(new Date(2016, 11, 14), B),
-  new Schedule(new Date(2016, 11, 21), G_B),
-  new Schedule(new Date(2016, 11, 28), B_P),
-  new Schedule(new Date(2017, 0, 4), G_B),
-  new Schedule(new Date(2017, 0, 11), B),
-  new Schedule(new Date(2017, 0, 18), G_B),
-  new Schedule(new Date(2017, 0, 25), B_P),
-  new Schedule(new Date(2017, 1, 1), G_B),
-  new Schedule(new Date(2017, 1, 8), B),
-  new Schedule(new Date(2017, 1, 15), G_B),
-  new Schedule(new Date(2017, 1, 22), B_P),
-  new Schedule(new Date(2017, 2, 1), G_B),
-  new Schedule(new Date(2017, 2, 8), B),
-  new Schedule(new Date(2017, 2, 15), G_B),
-  new Schedule(new Date(2017, 2, 22), B_P),
-  new Schedule(new Date(2017, 2, 29), G_B),
-  new Schedule(new Date(2017, 3, 5), B),
-  new Schedule(new Date(2017, 3, 12), G_B),
-  new Schedule(new Date(2017, 3, 19), B_P),
-  new Schedule(new Date(2017, 3, 26), G_B),
-  new Schedule(new Date(2017, 4, 3), B),
-  new Schedule(new Date(2017, 4, 10), G_B),
-  new Schedule(new Date(2017, 4, 17), B_P),
-  new Schedule(new Date(2017, 4, 24), G_B),
-  new Schedule(new Date(2017, 4, 31), B),
-]
-
-function nextPickUpMessage() {
-  var nextPickup = pickups.find(function (schedule) {
-    var d = new Date();
-    d.setHours(0,0,0,0);
-    return schedule.when >= d;
-  })
-
-  var day = days[ nextPickup.when.getDay() ]
-  var month = months[ nextPickup.when.getMonth() ]
-
-  return "It'll be the " + nextPickup.bins + " bins this " + day + " the " + nextPickup.when.getDate() + nth(nextPickup.when.getDate()) + " of " + month
+function nextPickUpMessage(date) {
+    var nextPickupDay = nextWednesday(date)
+    var binsToBeCollected = binsGettingCollectedOn(nextPickupDay)
+    return `It'll be the ${binsToBeCollected} bins on the ${moment(nextPickupDay).format('Do MMMM')}`
 }
 
-module.exports = nextPickUpMessage;
+module.exports = nextPickUpMessage
+
+for (var x = 0; x < 31; x++) {
+    var date = new Date(2016, 11, x)
+    console.log(moment(date).format('Do MMMM') + " --> " + nextPickUpMessage(date))
+}

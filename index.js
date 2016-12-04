@@ -12,12 +12,14 @@ var GlasgowBins = function () {
 GlasgowBins.prototype = Object.create(AlexaSkill.prototype);
 
 GlasgowBins.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    response.tellWithCard(nextPickUpMessage(), nextPickUpMessage(), nextPickUpMessage())
+    var message = nextPickUpMessage(new Date())
+    response.tellWithCard(message, message, message)
 }
 
 GlasgowBins.prototype.intentHandlers = {
     "GlasgowBinsIntent": function (intent, session, response) {
-        response.tellWithCard(nextPickUpMessage(), nextPickUpMessage(), nextPickUpMessage())
+        var message = nextPickUpMessage(new Date())
+        response.tellWithCard(message, message, message)
     },
     "AMAZON.HelpIntent": function (intent, session, response) {
         response.ask("You can say bins to me!", "You can say bins to me!")
