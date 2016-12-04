@@ -3,12 +3,12 @@
 var moment = require('moment')
 
 // routine started in Feb 2016:  http://www.glasgow.gov.uk/CHttpHandler.ashx?id=30696&p=0
-function binsGettingCollectedOn(date) {
+function binsGettingCollectedOn(pickupDate) {
     const startingFrom = moment(new Date(2016, 1, 10))
     const collectionPattern = ["blue", "green and brown", "purple and blue", "green and brown"]
 
-    var weeksSinceStartOfThisSchedule = moment(date).diff(startingFrom, 'weeks')
-    return collectionPattern[weeksSinceStartOfThisSchedule % 4]
+    var weeksSinceStartOfThisPattern = moment(pickupDate).diff(startingFrom, 'weeks')
+    return collectionPattern[weeksSinceStartOfThisPattern % 4]
 }
 
 function nextWednesday(date) {
